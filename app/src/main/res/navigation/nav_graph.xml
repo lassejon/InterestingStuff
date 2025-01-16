@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.app.interestingstuff.ui.list.ListFragment"
+        android:label="Interesting Items"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addEditFragment"
+            app:destination="@id/addEditFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addEditFragment"
+        android:name="com.app.interestingstuff.ui.addedit.AddEditFragment"
+        android:label="Add/Edit Item"
+        tools:layout="@layout/fragment_add_edit">
+        <argument
+            android:name="itemId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.app.interestingstuff.ui.detail.DetailFragment"
+        android:label="Item Details"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="itemId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
