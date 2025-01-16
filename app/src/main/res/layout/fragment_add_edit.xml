@@ -4,56 +4,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titleLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/titleEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:hint="Title"
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Description"
-            app:layout_constraintTop_toBottomOf="@id/titleLayout">
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/descriptionEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Description"
                 android:inputType="textMultiLine"
-                android:minLines="3" />
+                android:minLines="3"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionLayout" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+
+        <Button
+            android:id="@+id/captureImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Image"
+            android:layout_marginBottom="16dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/darker_gray"/>
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Save"
-            app:layout_constraintTop_toBottomOf="@id/ratingBar" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="Save Item"/>
+    </LinearLayout>
 </ScrollView>

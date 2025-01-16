@@ -21,6 +21,8 @@ class AddEditViewModel @Inject constructor(
     private val _item = MutableStateFlow<InterestingItem?>(null)
     val item: StateFlow<InterestingItem?> = _item
 
+    private var currentImageUri: String? = null
+
     init {
         if (itemId != -1) {
             loadItem()
@@ -30,10 +32,18 @@ class AddEditViewModel @Inject constructor(
     private fun loadItem() {
         viewModelScope.launch {
             _item.value = repository.getItem(itemId)
+            // Set the current image URI if exists
+            _item.value?.imageUri?.let {
+                currentImageUri = it
+            }
         }
     }
 
-    fun saveItem(title: String, description: String, rating: Float) {
+    fun setImageUri(uri: String) {
+        currentImageUri = uri
+    }
+
+    fun saveItem(title: String, description: String, rating: Float, imageUri: String? = null) {
         if (title.isBlank()) return
 
         viewModelScope.launch {
@@ -41,7 +51,8 @@ class AddEditViewModel @Inject constructor(
                 id = itemId.takeIf { it != -1 } ?: 0,
                 title = title,
                 description = description,
-                rating = rating
+                rating = rating,
+                imageUri = imageUri ?: currentImageUri
             )
 
             if (itemId == -1) {

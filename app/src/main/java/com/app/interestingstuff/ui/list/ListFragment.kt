@@ -57,10 +57,6 @@ class ListFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.items.collect { items ->
                     adapter.submitList(items)
-                    // Add test data if list is empty
-                    if (items.isEmpty()) {
-                        viewModel.insertTestData()
-                    }
                 }
             }
         }

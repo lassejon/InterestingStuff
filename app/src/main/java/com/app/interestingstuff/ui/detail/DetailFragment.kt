@@ -1,5 +1,6 @@
 package com.app.interestingstuff.ui.detail
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +21,7 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: DetailViewModel by viewModels()
-    private var currentItem: InterestingItem? = null  // Add this to track current item
-
+    private var currentItem: InterestingItem? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +42,11 @@ class DetailFragment : Fragment() {
                     binding.titleText.text = it.title
                     binding.descriptionText.text = it.description
                     binding.ratingBar.rating = it.rating
+
+                    // Set image if available
+                    it.imageUri?.let { uri ->
+                        binding.imageView.setImageURI(Uri.parse(uri))
+                    }
                 }
             }
         }
